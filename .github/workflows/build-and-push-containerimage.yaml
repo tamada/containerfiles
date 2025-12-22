@@ -14,8 +14,8 @@ jobs:
               uses: docker/setup-buildx-action@v3
             - name: Build docker image
               run: |
-                    for i in $(find . -type d -depth 1 | grep -v .git | xargs basename)
-                    do
-                        docker build -t ghcr.io/tamada/$i:latest $i
-                        docker push ghcr.io/tamada/$i:latest
+                    for i in $(find . -type d -depth 1 | grep -v .git | xargs basename) \
+                    do \
+                        docker build -t ghcr.io/tamada/$i:latest $i \
+                        docker push ghcr.io/tamada/$i:latest \
                     done
