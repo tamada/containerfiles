@@ -19,6 +19,6 @@ jobs:
                     for d in */; do
                         [[ "$d" == ".git" ]] && continue
                         name="${d%/}"
-                        docker build -t ghcr.io/tamada/$name:latest $d
+                        docker build -f ${name}/Containerfile -t ghcr.io/tamada/$name:latest $d
                         docker push ghcr.io/tamada/$name:latest
                     done
