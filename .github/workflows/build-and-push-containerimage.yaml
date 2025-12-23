@@ -17,7 +17,7 @@ jobs:
             - name: Build docker image
               run: |
                     for d in */; do
-                        if [ "%d" = ".git*"] && continue
+                        [[ "$d" == ".git" ]] && continue
                         name="${d%/}"
                         docker build -t ghcr.io/tamada/$name:latest $d
                         docker push ghcr.io/tamada/$name:latest
