@@ -9,6 +9,6 @@ ENV CC_x86_64_unknown_linux_musl=x86_64-linux-musl-gcc \
     CXX_x86_64_unknown_linux_musl=x86_64-linux-musl-g++ \
     PATH=/opt/x86_64-linux-musl-cross/bin:$PATH
 
-WORKDIR /app
+WORKDIR /io
 
 ENTRYPOINT [ "cargo", "build", "--target", "x86_64-unknown-linux-musl", "--release" ]

@@ -10,12 +10,15 @@ jobs:
         steps:
             - name: Source checkout
               uses: actions/checkout@v4
+
             - name: Set up docker buildx
               uses: docker/setup-buildx-action@v3
+
             - name: Build docker image
               run: |
-                    for i in $(find . -type d -depth 1 | grep -v .git | xargs basename) \
-                    do \
-                        docker build -t ghcr.io/tamada/$i:latest $i \
-                        docker push ghcr.io/tamada/$i:latest \
+                    for d in */; do
+                        if [ "%d" = ".git*"] && continue
+                        name="${d%/}"
+                        docker build -t ghcr.io/tamada/$name:latest $d
+                        docker push ghcr.io/tamada/$name:latest
                     done
